@@ -1,6 +1,5 @@
-# Project Name
-
-A brief description of your project goes here.
+# Reservation
+A reservation system for practice.
 
 ![Project Demo](demo.gif) <!-- If applicable, replace with a link or embed of your project demo/media -->
 
@@ -13,19 +12,20 @@ A brief description of your project goes here.
   - [Installation](#installation)
 
 ## About
-
-A brief introduction to your project. What does it do? Why was it created? What problems does it solve?
+TBD
+<!-- A brief introduction to your project. What does it do? Why was it created? What problems does it solve? -->
 
 ## Features
 
+<!--
 List the main features of your project. This could be a bullet-point list or a table.
 
 - Feature 1: Description
 - Feature 2: Description
 - ...
-
+-->
 ## Installation
-
+<!--
 Provide instructions on how to install your project. Include any prerequisites and steps needed to get your project up and running.
 
 Example:
@@ -35,3 +35,4 @@ git clone https://github.com/your-username/your-project.git
 cd your-project
 npm install   # Or other package manager commands
 ```
+-->
