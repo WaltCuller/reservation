@@ -1,18 +1,10 @@
 mod pb;
+mod types;
+mod error;
+mod utils;
 
+use prost_types::Timestamp;
+pub use error::{Error};
 pub use pb::*;
-
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+use chrono::{DateTime, NaiveDateTime, Utc};
+use utils::*;

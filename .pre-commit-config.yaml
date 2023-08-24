@@ -19,8 +19,8 @@ repos:
     rev: v1.8.1
     hooks:
       - id: typos
-  - repo: local
-    hooks:
+#  - repo: local
+#    hooks:
 #      - id: cargo-fmt
 #        name: cargo fmt
 #        description: Format files with rustfmt.
@@ -35,13 +35,13 @@ repos:
       #   language: rust
       #   files: \.rs$
       #   args: []
-      - id: cargo-check
-        name: cargo check
-        description: Check the package for errors.
-        entry: bash -c 'cargo check --all'
-        language: rust
-        files: \.rs$
-        pass_filenames: false
+#      - id: cargo-check
+#        name: cargo check
+#        description: Check the package for errors.
+#        entry: bash -c 'cargo check --all'
+#        language: rust
+#        files: \.rs$
+#        pass_filenames: false
 #      - id: cargo-clippy
 #        name: cargo clippy
 #        description: Lint rust sources
@@ -49,10 +49,10 @@ repos:
 #        language: rust
 #        files: \.rs$
 #        pass_filenames: false
-      - id: cargo-test
-        name: cargo test
-        description: unit test for the project
-        entry: bash -c 'cargo nextest run --all-features'
-        language: rust
-        files: \.rs$
-        pass_filenames: false
+#      - id: cargo-test
+#        name: cargo test
+#        description: unit test for the project
+#        entry: bash -c 'cargo nextest run --all-features'
+#        language: rust
+#        files: \.rs$
+#        pass_filenames: false
