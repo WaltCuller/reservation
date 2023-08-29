@@ -4,3 +4,4 @@ members = [
     "core",
     "service",
 ]
+resolver = "2"
