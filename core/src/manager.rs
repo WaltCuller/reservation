@@ -7,6 +7,9 @@ use sqlx::Row;
 impl Rsvp for RsvpManager {
     async fn reserve(&self, mut rsvp: abi::Reservation) -> Result<abi::Reservation, abi::Error> {
         // rsvp::validate()?;
+        if rsvp.start.is_none() || rsvp.end.is_none() {
+            return Err(abi::Error::InvalidTime);
+        }
 
         let status = abi::ReservationStatus::from_i32(rsvp.status).unwrap_or(abi::ReservationStatus::Pending);
 
