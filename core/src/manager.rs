@@ -16,7 +16,7 @@ impl Rsvp for RsvpManager {
         let timespan: PgRange<DateTime<Utc>> = rsvp.get_timespan();
 
         // generate a insert sql for the reservation
-        let sql_str = "INSERT INTO rsvp.reservation (user_id, resource_id, timespan, note, status) VALUES ($1, $2, $3, $4, $5::rsvp.reservation_status) RETURNING id";
+        let sql_str = "INSERT INTO rsvp.reservations (user_id, resource_id, timespan, note, status) VALUES ($1, $2, $3, $4, $5::rsvp.reservation_status) RETURNING id";
 
         let id = sqlx::query(sql_str)
             .bind(rsvp.user_id.clone())
@@ -49,6 +49,46 @@ impl Rsvp for RsvpManager {
     }
 
     async fn query(&self, query: abi::ReservationQuery) -> Result<Vec<abi::Reservation>, RsvpError> {
+        todo!()
+    }
+}
+
+impl RsvpManager {
+    pub fn new(pool: sqlx::PgPool) -> Self {
+        Self { pool }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use chrono::FixedOffset;
+    use abi::convert_to_timestamp;
+    use super::*;
+
+    #[sqlx_database_tester::test(
+    pool(variable = "migrated_pool", migration = "../migrations"),
+    )]
+    async fn reserve_should_work_for_valid_window() {
+        let manager = RsvpManager::new(migrated_pool.clone());
+        let start: DateTime<FixedOffset> = "2023-12-25T15:00:00+0800".parse().unwrap();
+        let end: DateTime<FixedOffset> = "2024-01-01T00:00:00+0800".parse().unwrap();
+        let rsvpRecord = abi::Reservation {
+            id: "".to_string(),
+            user_id: "test".to_string(),
+            resource_id: "test".to_string(),
+            start: Some(convert_to_timestamp(start.with_timezone(&Utc))),
+            end: Some(convert_to_timestamp(end.with_timezone(&Utc))),
+            note: "TODO".to_string(),
+            status: abi::ReservationStatus::Pending as i32,
+        };
+        let rsvp = manager.reserve(rsvpRecord).await.unwrap();
+        assert(rsvp.id != "");
+    }
+
+    #[sqlx_database_tester::test(
+    pool(variable = "migrated_pool", migration = "../migrations"),
+    )]
+    async fn reserve_should_reject_if_id_is_not_empty() {
         todo!()
     }
 }
