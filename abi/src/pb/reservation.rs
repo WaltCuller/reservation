@@ -191,6 +191,7 @@ pub struct ListenResponse {
     pub reservation: ::core::option::Option<Reservation>,
 }
 /// reservation status for a given time period
+#[derive(sqlx::Type)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
 #[repr(i32)]
 pub enum ReservationStatus {
